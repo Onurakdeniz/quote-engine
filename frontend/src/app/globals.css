@@ -1,0 +1,1429 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+  /* Light theme (fallback) */
+  --background: #ffffff;
+  --foreground: #000000;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --popover: #ffffff;
+  --popover-foreground: #000000;
+  --primary: #380a53;
+  --primary-foreground: #fff4e0;
+  --secondary: #f5f5f5;
+  --secondary-foreground: #000000;
+  --muted: #f5f5f5;
+  --muted-foreground: #666666;
+  --accent: #f0f0f0;
+  --accent-foreground: #000000;
+  --destructive: #ff3366;
+  --border: #e0e0e0;
+  --input: #f5f5f5;
+  --ring: #380a53;
+  --chart-1: #03ffbb;
+  --chart-2: #ff3366;
+  --chart-3: #9333ea;
+  --chart-4: #3b82f6;
+  --chart-5: #f59e0b;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #000000;
+  --sidebar-primary: #380a53;
+  --sidebar-primary-foreground: #fff4e0;
+  --sidebar-accent: #f0f0f0;
+  --sidebar-accent-foreground: #000000;
+  --sidebar-border: #e0e0e0;
+  --sidebar-ring: #380a53;
+}
+
+.dark {
+  /* Modern dark purple color scheme */
+  --background: #1a0b2e;                         /* Much darker purple background */
+  --foreground: #fff4e0;                         /* Warm white text */
+  --card: rgba(26, 11, 46, 0.8);                /* Dark purple cards */
+  --card-foreground: #fff4e0;                    /* Warm white text on cards */
+  --popover: rgba(26, 11, 46, 0.9);             /* Popover background */
+  --popover-foreground: #fff4e0;                 /* Popover text */
+  --primary: #03ffbb;                            /* Bright cyan primary */
+  --primary-foreground: #1a0b2e;                 /* Dark text on primary */
+  --secondary: rgba(26, 11, 46, 0.6);           /* Secondary elements */
+  --secondary-foreground: #fff4e0;               /* Warm white secondary text */
+  --muted: rgba(26, 11, 46, 0.4);               /* Muted backgrounds */
+  --muted-foreground: rgba(255, 244, 224, 0.7); /* Light muted text */
+  --accent: rgba(26, 11, 46, 0.7);              /* Accent elements */
+  --accent-foreground: #fff4e0;                  /* Warm white accent text */
+  --destructive: #ff3366;                        /* Red for negative values */
+  --border: rgba(255, 244, 224, 0.15);          /* Subtle warm border */
+  --input: rgba(26, 11, 46, 0.6);               /* Input backgrounds */
+  --ring: #03ffbb;                               /* Focus rings */
+  
+  /* Trading-specific colors */
+  --chart-1: #03ffbb;                            /* Bright cyan for positive */
+  --chart-2: #ff3366;                            /* Red for negative */
+  --chart-3: #9333ea;                            /* Purple accent */
+  --chart-4: #3b82f6;                            /* Blue accent */
+  --chart-5: #f59e0b;                            /* Orange accent */
+  
+  /* Sidebar styling */
+  --sidebar: #1a0b2e;                            /* Sidebar background */
+  --sidebar-foreground: #fff4e0;                 /* Warm white sidebar text */
+  --sidebar-primary: #03ffbb;                    /* Cyan sidebar primary */
+  --sidebar-primary-foreground: #1a0b2e;         /* Dark text on primary */
+  --sidebar-accent: rgba(26, 11, 46, 0.7);      /* Sidebar accent */
+  --sidebar-accent-foreground: #fff4e0;          /* Warm white accent text */
+  --sidebar-border: rgba(255, 244, 224, 0.15);  /* Sidebar borders */
+  --sidebar-ring: #03ffbb;                       /* Sidebar focus */
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* Modern dark purple background */
+    background: #1a0b2e;
+    color: #fff4e0;
+  }
+  
+  /* Simplified modern color classes */
+  .custom-positive,
+  .trading-positive,
+  .tycho-positive {
+    color: #03ffbb;
+  }
+  
+  .custom-negative,
+  .trading-negative,
+  .tycho-negative {
+    color: #ff3366;
+  }
+  
+  .custom-neutral,
+  .trading-neutral,
+  .tycho-neutral {
+    color: #fff4e0;
+  }
+  
+  .custom-border {
+    border-color: rgba(255, 244, 224, 0.15);
+  }
+  
+  /* Modern card designs with gradient blur backgrounds */
+  .tycho-card {
+    @apply rounded-xl;
+    background: linear-gradient(135deg, 
+      rgba(26, 11, 46, 0.25) 0%, 
+      rgba(32, 15, 55, 0.2) 50%, 
+      rgba(28, 13, 50, 0.25) 100%
+    );
+    border: 1px solid rgba(255, 244, 224, 0.1);
+    backdrop-filter: blur(35px) saturate(150%);
+    transition: all 0.3s ease;
+  }
+  
+  .tycho-card:hover {
+    background: linear-gradient(135deg, 
+      rgba(26, 11, 46, 0.15) 0%, 
+      rgba(32, 15, 55, 0.1) 30%, 
+      rgba(28, 13, 50, 0.05) 70%,
+      rgba(26, 11, 46, 0.15) 100%
+    );
+    border-color: rgba(3, 255, 187, 0.4);
+    backdrop-filter: blur(25px) saturate(200%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(3, 255, 187, 0.15);
+  }
+  
+  .frosted-card {
+    @apply rounded-2xl;
+    background: linear-gradient(135deg, 
+      rgba(26, 11, 46, 0.3) 0%, 
+      rgba(35, 18, 60, 0.25) 30%,
+      rgba(20, 8, 40, 0.2) 70%,
+      rgba(28, 13, 50, 0.3) 100%
+    );
+    border: 1px solid rgba(255, 244, 224, 0.12);
+    backdrop-filter: blur(45px) saturate(180%);
+    transition: all 0.3s ease;
+  }
+  
+  .frosted-card:hover {
+    background: linear-gradient(135deg, 
+      rgba(26, 11, 46, 0.2) 0%, 
+      rgba(35, 18, 60, 0.15) 30%,
+      rgba(20, 8, 40, 0.1) 70%,
+      rgba(28, 13, 50, 0.2) 100%
+    );
+    border-color: rgba(3, 255, 187, 0.2);
+    backdrop-filter: blur(35px) saturate(200%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(3, 255, 187, 0.1);
+  }
+  
+  .stats-card {
+    @apply rounded-xl;
+    background: linear-gradient(135deg, 
+      rgba(26, 11, 46, 0.35) 0%, 
+      rgba(40, 22, 70, 0.25) 25%,
+      rgba(15, 5, 35, 0.2) 50%,
+      rgba(30, 15, 55, 0.3) 75%,
+      rgba(26, 11, 46, 0.35) 100%
+    );
+    border: 1px solid rgba(255, 244, 224, 0.15);
+    backdrop-filter: blur(40px) saturate(160%);
+    transition: all 0.3s ease;
+  }
+  
+  .stats-card:hover {
+    background: linear-gradient(135deg, 
+      rgba(26, 11, 46, 0.7) 0%, 
+      rgba(40, 22, 70, 0.6) 25%,
+      rgba(15, 5, 35, 0.55) 50%,
+      rgba(30, 15, 55, 0.65) 75%,
+      rgba(26, 11, 46, 0.7) 100%
+    );
+    border-color: rgba(3, 255, 187, 0.3);
+    transform: translateY(-2px);
+  }
+  
+  .content-card {
+    @apply rounded-xl;
+    background: linear-gradient(135deg, 
+      rgba(26, 11, 46, 0.6) 0%, 
+      rgba(22, 9, 42, 0.55) 25%,
+      rgba(30, 15, 55, 0.5) 75%,
+      rgba(26, 11, 46, 0.6) 100%
+    );
+    border: 1px solid rgba(255, 244, 224, 0.12);
+    backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
+  }
+  
+  .content-card:hover {
+    background: linear-gradient(135deg, 
+      rgba(26, 11, 46, 0.75) 0%, 
+      rgba(22, 9, 42, 0.7) 25%,
+      rgba(30, 15, 55, 0.65) 75%,
+      rgba(26, 11, 46, 0.75) 100%
+    );
+    border-color: rgba(255, 244, 224, 0.2);
+  }
+  
+  .data-card {
+    @apply rounded-lg;
+    background: linear-gradient(135deg, 
+      rgba(26, 11, 46, 0.4) 0%, 
+      rgba(32, 16, 58, 0.35) 50%, 
+      rgba(26, 11, 46, 0.4) 100%
+    );
+    border: 1px solid rgba(255, 244, 224, 0.1);
+    backdrop-filter: blur(18px);
+    transition: all 0.3s ease;
+  }
+  
+  .data-card:hover {
+    background: linear-gradient(135deg, 
+      rgba(26, 11, 46, 0.6) 0%, 
+      rgba(32, 16, 58, 0.55) 50%, 
+      rgba(26, 11, 46, 0.6) 100%
+    );
+    border-color: rgba(3, 255, 187, 0.15);
+    transform: translateY(-1px);
+  }
+  
+  .table-card {
+    @apply rounded-xl;
+    background: linear-gradient(135deg, 
+      rgba(26, 11, 46, 0.3) 0%, 
+      rgba(35, 18, 62, 0.25) 30%,
+      rgba(18, 7, 38, 0.2) 70%,
+      rgba(26, 11, 46, 0.3) 100%
+    );
+    border: 1px solid rgba(255, 244, 224, 0.12);
+    backdrop-filter: blur(50px) saturate(170%);
+    transition: all 0.3s ease;
+  }
+  
+  .enhanced-row {
+    @apply transition-all duration-200 ease-out rounded-lg;
+    background: linear-gradient(90deg, 
+      rgba(26, 11, 46, 0.2) 0%, 
+      rgba(30, 14, 52, 0.15) 50%, 
+      rgba(26, 11, 46, 0.2) 100%
+    );
+    border-bottom: 1px solid rgba(255, 244, 224, 0.08);
+  }
+  
+  .enhanced-row:hover {
+    background: linear-gradient(90deg, 
+      rgba(26, 11, 46, 0.4) 0%, 
+      rgba(30, 14, 52, 0.35) 50%, 
+      rgba(26, 11, 46, 0.4) 100%
+    );
+    border-color: rgba(3, 255, 187, 0.1);
+  }
+  
+  .mini-card {
+    @apply rounded-lg;
+    background: linear-gradient(135deg, 
+      rgba(26, 11, 46, 0.3) 0%, 
+      rgba(30, 14, 52, 0.25) 50%, 
+      rgba(26, 11, 46, 0.3) 100%
+    );
+    border: 1px solid rgba(255, 244, 224, 0.08);
+    backdrop-filter: blur(12px);
+    transition: all 0.25s ease;
+  }
+  
+  .mini-card:hover {
+    background: linear-gradient(135deg, 
+      rgba(26, 11, 46, 0.5) 0%, 
+      rgba(30, 14, 52, 0.45) 50%, 
+      rgba(26, 11, 46, 0.5) 100%
+    );
+    border-color: rgba(255, 244, 224, 0.15);
+    transform: translateY(-1px);
+  }
+  
+  .floating-card {
+    @apply rounded-2xl;
+    background: linear-gradient(135deg, 
+      rgba(26, 11, 46, 0.6) 0%, 
+      rgba(40, 22, 70, 0.5) 20%,
+      rgba(15, 5, 35, 0.45) 50%,
+      rgba(35, 18, 62, 0.5) 80%,
+      rgba(26, 11, 46, 0.6) 100%
+    );
+    border: 1px solid rgba(255, 244, 224, 0.2);
+    backdrop-filter: blur(28px);
+    transition: all 0.4s ease;
+  }
+  
+  .floating-card:hover {
+    background: linear-gradient(135deg, 
+      rgba(26, 11, 46, 0.8) 0%, 
+      rgba(40, 22, 70, 0.7) 20%,
+      rgba(15, 5, 35, 0.65) 50%,
+      rgba(35, 18, 62, 0.7) 80%,
+      rgba(26, 11, 46, 0.8) 100%
+    );
+    border-color: rgba(3, 255, 187, 0.3);
+    transform: translateY(-3px);
+  }
+  
+  /* Glass morphism for modern overlays */
+  .glass-morphism {
+    background: rgba(26, 11, 46, 0.4);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 244, 224, 0.1);
+    border-radius: 8px;
+  }
+  
+  .nav-glass {
+    backdrop-filter: blur(20px);
+    background: linear-gradient(135deg, 
+      rgba(26, 11, 46, 0.4) 0%, 
+      rgba(35, 18, 60, 0.35) 30%,
+      rgba(20, 8, 40, 0.3) 70%,
+      rgba(28, 13, 50, 0.4) 100%
+    );
+    border-bottom: 1px solid rgba(255, 244, 224, 0.12);
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 8px 32px rgba(26, 11, 46, 0.3);
+  }
+  
+  /* Modern scrollbar styling */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: rgba(26, 11, 46, 0.3);
+    border-radius: 8px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 244, 224, 0.25);
+    border-radius: 8px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 244, 224, 0.4);
+  }
+  
+  /* Clean selection styling */
+  ::selection {
+    background: rgba(3, 255, 187, 0.25);
+    color: #fff4e0;
+  }
+  
+  /* Typography for trading data */
+  .tycho-mono {
+    font-family: 'SF Mono', 'Monaco', 'Consolas', 'Roboto Mono', monospace;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+  }
+  
+  /* Modern focus states - Simple borders */
+  .tycho-focus {
+    @apply focus:ring-0 focus:outline-none;
+    border-width: 1px !important;
+  }
+  
+  .tycho-focus:focus {
+    border-color: rgba(3, 255, 187, 0.4) !important;
+  }
+  
+  /* Simplified badges and indicators */
+  .tycho-badge-positive {
+    background: rgba(3, 255, 187, 0.12);
+    color: #03ffbb;
+    border: 1px solid rgba(3, 255, 187, 0.25);
+    border-radius: 6px;
+    padding: 2px 8px;
+  }
+  
+  .tycho-badge-negative {
+    background: rgba(255, 51, 102, 0.12);
+    color: #ff3366;
+    border: 1px solid rgba(255, 51, 102, 0.25);
+    border-radius: 6px;
+    padding: 2px 8px;
+  }
+  
+  /* Clean glow effects */
+  .tycho-glow {
+    box-shadow: 0 0 8px rgba(3, 255, 187, 0.25);
+    border-radius: 8px;
+  }
+  
+  .tycho-glow-positive {
+    box-shadow: 0 0 6px rgba(3, 255, 187, 0.3);
+  }
+  
+  .tycho-glow-negative {
+    box-shadow: 0 0 6px rgba(255, 51, 102, 0.3);
+  }
+  
+  /* Modern input and form styling */
+  input, textarea {
+    color: #fff4e0 !important;
+    background: rgba(26, 11, 46, 0.4) !important;
+    border-color: rgba(255, 244, 224, 0.15) !important;
+    border-radius: 10px !important;
+    backdrop-filter: blur(10px) !important;
+  }
+  
+  input:focus, textarea:focus {
+    background: rgba(26, 11, 46, 0.6) !important;
+    border-color: rgba(3, 255, 187, 0.3) !important;
+    backdrop-filter: blur(14px) !important;
+  }
+  
+  input::placeholder, textarea::placeholder {
+    color: rgba(255, 244, 224, 0.5) !important;
+  }
+  
+  /* Modern primary button styling */
+  .tycho-primary {
+    background: linear-gradient(135deg, #03ffbb 0%, #00e6a6 100%);
+    color: #1a0b2e;
+    border-radius: 10px;
+    backdrop-filter: blur(8px);
+    border: none;
+    font-weight: 500;
+  }
+  
+  /* Enhanced button styling */
+  button {
+    border-radius: 8px !important;
+    backdrop-filter: blur(6px);
+  }
+  
+  /* Modern badge styling */
+  .badge {
+    border-radius: 6px !important;
+    backdrop-filter: blur(4px);
+  }
+  
+  /* Clean table styling */
+  table {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  /* Modern navigation tab styling - simple borders */
+  .nav-tab-active {
+    background: transparent !important;
+    border: 1px solid #03ffbb !important;
+    backdrop-filter: blur(8px);
+    color: #03ffbb !important;
+  }
+  
+  .nav-tab-inactive {
+    background: transparent !important;
+    border: 1px solid rgba(255, 244, 224, 0.1) !important;
+    backdrop-filter: blur(6px);
+    color: #fff4e0 !important;
+  }
+  
+  .nav-tab-inactive:hover {
+    background: transparent !important;
+    border: 1px solid rgba(3, 255, 187, 0.3) !important;
+    backdrop-filter: blur(12px) saturate(150%);
+    color: #03ffbb !important;
+  }
+  
+  /* Modern real-time number effects */
+  @keyframes modern-number-glow {
+    0% { 
+      transform: scale(1);
+      color: #fff4e0;
+      text-shadow: none;
+    }
+    50% { 
+      transform: scale(1.02);
+      color: #03ffbb;
+      text-shadow: 0 0 8px rgba(3, 255, 187, 0.6);
+    }
+    100% { 
+      transform: scale(1);
+      color: #fff4e0;
+      text-shadow: none;
+    }
+  }
+  
+  @keyframes price-hover-highlight {
+    0% { 
+      background: transparent;
+    }
+    100% { 
+      background: linear-gradient(90deg, 
+        rgba(3, 255, 187, 0.1) 0%, 
+        rgba(3, 255, 187, 0.05) 100%
+      );
+    }
+  }
+  
+  @keyframes card-icon-pulse {
+    0%, 100% { 
+      transform: scale(1.2); 
+      opacity: 1; 
+    }
+    50% { 
+      transform: scale(1.4); 
+      opacity: 0.8; 
+    }
+  }
+  
+  @keyframes card-icon-spin {
+    from { transform: scale(1.2) rotate(0deg); }
+    to { transform: scale(1.2) rotate(360deg); }
+  }
+  
+  @keyframes card-icon-bounce {
+    0%, 100% { transform: scale(1.2) translateY(0); }
+    50% { transform: scale(1.3) translateY(-2px); }
+  }
+  
+  .animate-modern-glow {
+    animation: modern-number-glow 1.2s ease-out;
+  }
+  
+  .price-hover-effect {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+  }
+  
+  .price-hover-effect:hover {
+    animation: price-hover-highlight 0.3s ease-out forwards;
+    border-radius: 6px;
+    backdrop-filter: blur(8px);
+  }
+  
+  .animate-card-icon-pulse {
+    animation: card-icon-pulse 2s ease-in-out infinite;
+  }
+  
+  .animate-card-icon-spin {
+    animation: card-icon-spin 4s linear infinite;
+  }
+  
+  .animate-card-icon-bounce {
+    animation: card-icon-bounce 1.5s ease-in-out infinite;
+  }
+  
+  /* Modern real-time number styling */
+  .modern-number {
+    font-variant-numeric: tabular-nums;
+    display: inline-block;
+    transition: all 0.3s ease;
+    font-weight: 600;
+  }
+  
+  .modern-number:hover {
+    color: #03ffbb;
+    text-shadow: 0 0 6px rgba(3, 255, 187, 0.5);
+    transform: scale(1.05);
+  }
+
+  /* Smooth hover card animations */
+  @keyframes hover-card-enter {
+    from {
+      opacity: 0;
+      transform: scale(0.96) translateY(-2px);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+  
+  @keyframes hover-card-exit {
+    from {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.96) translateY(-2px);
+    }
+  }
+
+  /* Simple hover card with heavy blur */
+  .hover-card-ultra-glass {
+    background: rgba(26, 11, 46, 0.95) !important; /* Nearly completely opaque */
+    backdrop-filter: blur(500px) saturate(300%) brightness(1.5) contrast(1.3) !important; /* Maximum possible blur */
+    -webkit-backdrop-filter: blur(500px) saturate(300%) brightness(1.5) contrast(1.3) !important; /* Safari support */
+    border: none !important; /* Remove border completely */
+    box-shadow: none !important; /* Remove all shadows */
+    transition: opacity 0.25s ease-out, transform 0.25s ease-out !important;
+    z-index: 2147483647 !important; /* Max z-index */
+    opacity: 0;
+    transform: scale(0.95) translateY(-5px); /* Adjusted transform */
+    pointer-events: none;
+    position: relative;
+  }
+  
+  /* Fallback for browsers without backdrop-filter support */
+  @supports not (backdrop-filter: blur(1px)) {
+    .hover-card-ultra-glass {
+      background: rgba(26, 11, 46, 0.98) !important; /* Almost completely opaque fallback */
+    }
+    .hover-card-path-ultra-glass {
+      background: rgba(26, 11, 46, 0.99) !important; /* Nearly opaque for path cards */
+    }
+  }
+  
+  /* Add an additional backdrop blur layer for extra effect */
+  .hover-card-ultra-glass::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    right: -100px;
+    bottom: -100px;
+    background: rgba(26, 11, 46, 0.6);
+    backdrop-filter: blur(300px) saturate(250%) contrast(1.2);
+    -webkit-backdrop-filter: blur(300px) saturate(250%) contrast(1.2);
+    border-radius: inherit;
+    z-index: -1;
+    box-shadow: none !important; /* Remove shadow from pseudo-element */
+  }
+  
+  /* Additional overlay for complete background blocking */
+  .hover-card-ultra-glass::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(26, 11, 46, 0.3);
+    border-radius: inherit;
+    z-index: -1;
+  }
+  
+  .hover-card-ultra-glass[data-state="open"] {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    pointer-events: auto;
+  }
+  
+  /* Ensure hover card portal appears above everything */
+  [data-radix-popper-content-wrapper] {
+    z-index: 2147483646 !important; /* Just below the card itself */
+    position: fixed !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  
+  /* Fix table overflow cutting off hover cards */
+  .table-container {
+    position: static !important;
+    overflow: visible !important;
+  }
+  
+  /* Ensure all card containers don't clip hover content */
+  .table-card .relative {
+    overflow: visible !important;
+  }
+  
+  /* Maximum z-index for any hover card elements */
+  .hover-card-ultra-glass,
+  [data-radix-hover-card-content] {
+    z-index: 999999 !important;
+  }
+
+  /* Enhanced input styling with gradients */
+  input, textarea {
+    color: #fff4e0 !important;
+    background: linear-gradient(135deg, 
+      rgba(26, 11, 46, 0.4) 0%, 
+      rgba(30, 14, 52, 0.35) 50%, 
+      rgba(26, 11, 46, 0.4) 100%
+    ) !important;
+    border-color: rgba(255, 244, 224, 0.15) !important;
+    border-width: 1px !important;
+    border-radius: 10px !important;
+    backdrop-filter: blur(10px) !important;
+  }
+  
+  input:focus, textarea:focus {
+    background: linear-gradient(135deg, 
+      rgba(26, 11, 46, 0.6) 0%, 
+      rgba(30, 14, 52, 0.55) 50%, 
+      rgba(26, 11, 46, 0.6) 100%
+    ) !important;
+    border-color: rgba(3, 255, 187, 0.4) !important;
+    border-width: 1px !important;
+    backdrop-filter: blur(14px) !important;
+  }
+  
+  /* Ultra glass morphism hover effect */
+  .ultra-glass-hover {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .ultra-glass-hover:hover {
+    background: linear-gradient(135deg, 
+      rgba(26, 11, 46, 0.1) 0%, 
+      rgba(32, 16, 58, 0.08) 25%,
+      rgba(28, 13, 50, 0.05) 50%,
+      rgba(35, 18, 62, 0.08) 75%,
+      rgba(26, 11, 46, 0.1) 100%
+    ) !important;
+    border-color: rgba(3, 255, 187, 0.5) !important;
+    backdrop-filter: blur(35px) saturate(220%) !important;
+    box-shadow: 0 16px 64px rgba(3, 255, 187, 0.2) !important;
+    transform: translateY(-3px) scale(1.02);
+  }
+
+  /* Enhanced hover card for path information with maximum blur */
+  .hover-card-path-ultra-glass {
+    background: rgba(26, 11, 46, 0.98) !important; /* Nearly completely opaque for path cards */
+    backdrop-filter: blur(600px) saturate(350%) brightness(1.6) contrast(1.4) hue-rotate(2deg) !important; /* Absolute maximum blur with all filters */
+    -webkit-backdrop-filter: blur(600px) saturate(350%) brightness(1.6) contrast(1.4) hue-rotate(2deg) !important; /* Safari support */
+    -moz-backdrop-filter: blur(600px) saturate(350%) brightness(1.6) contrast(1.4) hue-rotate(2deg) !important; /* Firefox support */
+    border: none !important; /* Remove border completely */
+    box-shadow: none !important; /* Remove all shadows completely */
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out !important;
+    z-index: 2147483647 !important;
+    opacity: 0;
+    transform: scale(0.94) translateY(-8px);
+    pointer-events: none;
+    position: relative;
+  }
+  
+  /* Additional backdrop layer for path cards */
+  .hover-card-path-ultra-glass::before {
+    content: '';
+    position: absolute;
+    top: -120px;
+    left: -120px;
+    right: -120px;
+    bottom: -120px;
+    background: rgba(26, 11, 46, 0.7);
+    backdrop-filter: blur(400px) saturate(300%) hue-rotate(2deg) brightness(1.3);
+    -webkit-backdrop-filter: blur(400px) saturate(300%) hue-rotate(2deg) brightness(1.3);
+    border-radius: inherit;
+    z-index: -2;
+    box-shadow: none !important; /* Remove shadow from pseudo-element */
+  }
+  
+  /* Triple layer overlay for complete background blocking */
+  .hover-card-path-ultra-glass::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(26, 11, 46, 0.4);
+    border-radius: inherit;
+    z-index: -1;
+  }
+  
+  .hover-card-path-ultra-glass[data-state="open"] {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    pointer-events: auto;
+  }
+
+  /* Ensure maximum z-index and complete background blocking */
+  .hover-card-ultra-glass,
+  .hover-card-path-ultra-glass,
+  [data-radix-hover-card-content] {
+    z-index: 999999 !important;
+    isolation: isolate !important; /* Create new stacking context */
+  }
+
+  /* Force solid background overlay for ultimate opacity */
+  .hover-card-ultra-glass,
+  .hover-card-path-ultra-glass {
+    position: relative !important;
+  }
+
+  .hover-card-ultra-glass:before,
+  .hover-card-path-ultra-glass:before {
+    pointer-events: none !important;
+  }
+
+  /* Add solid color overlay for browsers with poor backdrop-filter support */
+  @media (prefers-reduced-motion: no-preference) {
+    .hover-card-ultra-glass,
+    .hover-card-path-ultra-glass {
+      background-image: 
+        linear-gradient(135deg, 
+          rgba(26, 11, 46, 0.95) 0%, 
+          rgba(30, 14, 52, 0.9) 25%,
+          rgba(35, 18, 62, 0.85) 50%,
+          rgba(28, 13, 50, 0.9) 75%,
+          rgba(26, 11, 46, 0.95) 100%
+        ) !important;
+      background-blend-mode: multiply !important;
+    }
+  }
+  
+  /* Force complete opacity on all hover cards */
+  [data-radix-hover-card-content] {
+    background: rgba(26, 11, 46, 0.96) !important;
+    backdrop-filter: blur(500px) saturate(300%) brightness(1.5) !important;
+    -webkit-backdrop-filter: blur(500px) saturate(300%) brightness(1.5) !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    position: fixed !important;
+    width: 320px !important;
+    min-width: 320px !important;
+    max-width: 320px !important;
+    overflow: hidden !important;
+  }
+
+  /* Remove shadows from all hover card variants */
+  .hover-card-ultra-glass *,
+  .hover-card-path-ultra-glass * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+  }
+
+  /* Ensure no border radius artifacts */
+  .hover-card-ultra-glass,
+  .hover-card-path-ultra-glass {
+    border-radius: 16px !important;
+    overflow: hidden !important;
+  }
+
+  /* Ensure hover cards don't interfere with table layout */
+  .hover-card-ultra-glass,
+  .hover-card-path-ultra-glass {
+    position: fixed !important;
+    width: 320px !important;
+    min-width: 320px !important;
+    max-width: 320px !important;
+    overflow: hidden !important;
+    word-wrap: break-word !important;
+  }
+
+  /* Table containers should not be affected by hover cards */
+  .table-container,
+  .table-card {
+    position: relative !important;
+    overflow-x: auto !important;
+    contain: layout !important;
+  }
+
+  /* Mobile responsiveness */
+  @media (max-width: 768px) {
+    /* Mobile Horizontal Scrollable Tabs */
+    .mobile-tabs-container {
+      position: relative;
+      width: 100%;
+      padding: 0.5rem 0;
+      background: linear-gradient(135deg, 
+        rgba(26, 11, 46, 0.2) 0%, 
+        rgba(30, 14, 52, 0.15) 50%, 
+        rgba(26, 11, 46, 0.2) 100%
+      );
+      border-top: 1px solid rgba(255, 244, 224, 0.08);
+      overflow: hidden;
+    }
+
+    .mobile-tabs-scroll {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0 1rem;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+      touch-action: pan-x;
+    }
+
+    .mobile-tabs-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .mobile-tab-item {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 0.25rem !important;
+      min-width: 60px !important;
+      height: 42px !important;
+      padding: 0.5rem !important;
+      border-radius: 16px !important;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+      scroll-snap-align: start !important;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+      backdrop-filter: blur(8px) !important;
+      -webkit-backdrop-filter: blur(8px) !important;
+      touch-action: manipulation !important;
+      position: relative !important;
+    }
+
+    .mobile-tab-active {
+      background: linear-gradient(135deg, 
+        rgba(3, 255, 187, 0.15) 0%, 
+        rgba(3, 255, 187, 0.1) 50%, 
+        rgba(3, 255, 187, 0.15) 100%
+      ) !important;
+      border: 1px solid rgba(3, 255, 187, 0.3) !important;
+      color: #03ffbb !important;
+      transform: translateY(-1px) !important;
+      box-shadow: 0 3px 15px rgba(3, 255, 187, 0.2) !important;
+    }
+
+    .mobile-tab-active::before {
+      content: '';
+      position: absolute;
+      bottom: 0px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 16px;
+      height: 2px;
+      background: linear-gradient(90deg, #03ffbb 0%, #00e6a6 100%);
+      border-radius: 1px;
+      box-shadow: 0 0 6px rgba(3, 255, 187, 0.6);
+    }
+
+    .mobile-tab-inactive {
+      background: rgba(26, 11, 46, 0.3) !important;
+      border: 1px solid rgba(255, 244, 224, 0.1) !important;
+      color: rgba(255, 244, 224, 0.8) !important;
+    }
+
+    .mobile-tab-inactive:hover {
+      background: rgba(26, 11, 46, 0.5) !important;
+      border-color: rgba(3, 255, 187, 0.2) !important;
+      color: rgba(3, 255, 187, 0.8) !important;
+      transform: translateY(-1px) !important;
+      backdrop-filter: blur(12px) !important;
+    }
+
+    .mobile-tab-item svg {
+      width: 1rem !important;
+      height: 1rem !important;
+      flex-shrink: 0 !important;
+    }
+
+    /* Add scroll indicator shadows */
+    .mobile-tabs-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 20px;
+      height: 100%;
+      background: linear-gradient(90deg, 
+        rgba(26, 11, 46, 0.8) 0%, 
+        transparent 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .mobile-tabs-container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 20px;
+      height: 100%;
+      background: linear-gradient(270deg, 
+        rgba(26, 11, 46, 0.8) 0%, 
+        transparent 100%
+      );
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Enhanced mobile tab animations */
+    @keyframes mobile-tab-glow {
+      0%, 100% {
+        box-shadow: 0 3px 15px rgba(3, 255, 187, 0.2);
+      }
+      50% {
+        box-shadow: 0 4px 20px rgba(3, 255, 187, 0.3);
+      }
+    }
+
+    .mobile-tab-active {
+      animation: mobile-tab-glow 3s ease-in-out infinite !important;
+    }
+
+    /* Smooth scroll momentum */
+    .mobile-tabs-scroll {
+      scroll-padding-left: 1rem;
+      scroll-padding-right: 1rem;
+    }
+
+    /* Touch feedback */
+    .mobile-tab-item:active {
+      transform: translateY(0) scale(0.95) !important;
+      transition: transform 0.1s ease !important;
+    }
+
+    .mobile-tab-active:active {
+      transform: translateY(-1px) scale(0.95) !important;
+    }
+
+    /* Hide widgets by default on mobile */
+    .mobile-hide-widgets {
+      display: none !important;
+    }
+
+    /* Hide search bar and controls on mobile */
+    .mobile-hide-search {
+      display: none !important;
+    }
+
+    /* Make table scroll horizontally on mobile */
+    .table-container {
+      overflow-x: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+    }
+
+    /* Reduce hover card size on mobile */
+    [data-radix-hover-card-content],
+    .hover-card-ultra-glass,
+    .hover-card-path-ultra-glass {
+      width: 280px !important;
+      min-width: 280px !important;
+      max-width: 280px !important;
+      max-height: 400px !important;
+      overflow-y: auto !important;
+    }
+
+    /* Adjust table padding on mobile */
+    .mobile-table-padding {
+      padding-left: 0.5rem !important;
+      padding-right: 0.5rem !important;
+    }
+
+    /* Hide non-essential columns on mobile */
+    .mobile-hide {
+      display: none !important;
+    }
+
+    /* Compact spacing on mobile */
+    .mobile-compact {
+      padding: 0.25rem !important;
+    }
+
+    /* Mobile token cards container */
+    .mobile-tokens-container {
+      padding: 0 !important;
+    }
+
+    /* Mobile token card styles */
+    .mobile-token-card {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+
+    .mobile-token-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(3, 255, 187, 0.1);
+      border-color: rgba(3, 255, 187, 0.3);
+    }
+
+    /* Mobile price display enhancements */
+    .mobile-token-card .price-hover-effect {
+      transition: all 0.2s ease;
+    }
+
+    .mobile-token-card .price-hover-effect:hover {
+      color: rgba(3, 255, 187, 1) !important;
+      text-shadow: 0 0 8px rgba(3, 255, 187, 0.3);
+    }
+
+    /* Mobile percentage change animations */
+    .mobile-token-card .tycho-positive {
+      color: #03ffbb !important;
+    }
+
+    .mobile-token-card .tycho-negative {
+      color: #ff3366 !important;
+    }
+
+    /* Mobile path visualization */
+    .mobile-token-card .trading-path {
+      background: rgba(3, 255, 187, 0.05);
+      border: 1px solid rgba(3, 255, 187, 0.1);
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .mobile-token-card .trading-path:hover {
+      background: rgba(3, 255, 187, 0.1);
+      border-color: rgba(3, 255, 187, 0.2);
+    }
+
+    /* Mobile button adjustments */
+    .mobile-token-card .tycho-focus {
+      transition: all 0.2s ease;
+    }
+
+    .mobile-token-card .tycho-focus:hover {
+      background: rgba(3, 255, 187, 0.1) !important;
+      border-color: rgba(3, 255, 187, 0.3) !important;
+      color: #03ffbb !important;
+    }
+
+    /* Improve mobile scrolling performance */
+    .mobile-tokens-container {
+      -webkit-overflow-scrolling: touch;
+      scroll-behavior: smooth;
+    }
+
+    /* Mobile-specific glass morphism effect */
+    .mobile-token-card .bg-muted\/20 {
+      background: rgba(255, 255, 255, 0.02) !important;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .mobile-token-card .bg-muted\/10 {
+      background: rgba(255, 255, 255, 0.01) !important;
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    /* Mobile sort controls */
+    .mobile-tokens-container .data-card {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    /* Enhanced mobile typography */
+    .mobile-token-card .tycho-mono {
+      font-feature-settings: 'tnum' 1, 'lnum' 1;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Mobile animation performance */
+    .mobile-token-card * {
+      will-change: transform, opacity;
+    }
+
+    .mobile-token-card .animate-pulse {
+      animation: mobile-pulse 1s ease-in-out infinite;
+    }
+
+    @keyframes mobile-pulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.7;
+        transform: scale(1.02);
+      }
+    }
+
+    /* Mobile-specific responsive breakpoints */
+    .mobile-tokens-container .h-7 {
+      height: 2rem !important;
+    }
+
+    .mobile-tokens-container .px-3 {
+      padding-left: 0.875rem !important;
+      padding-right: 0.875rem !important;
+    }
+
+    /* Touch-friendly interactions */
+    .mobile-token-card button {
+      min-height: 44px;
+      min-width: 44px;
+      touch-action: manipulation;
+    }
+
+    .mobile-token-card .text-xs {
+      font-size: 0.75rem !important;
+      line-height: 1rem !important;
+    }
+
+    .mobile-token-card .text-sm {
+      font-size: 0.875rem !important;
+      line-height: 1.25rem !important;
+    }
+
+    /* Mobile-specific hover card adjustments */
+    [data-radix-hover-card-content] {
+      transform: translateX(-50%) translateY(-100%);
+      margin-top: -8px;
+    }
+
+    /* Improve mobile performance */
+    .mobile-token-card {
+      contain: layout style paint;
+      isolation: isolate;
+    }
+
+    /* Mobile Navigation Enhancements */
+    .nav-glass {
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      border-bottom: 1px solid rgba(255, 244, 224, 0.1) !important;
+    }
+
+    /* Mobile navigation menu overlay */
+    .nav-glass .absolute {
+      backdrop-filter: blur(25px) !important;
+      -webkit-backdrop-filter: blur(25px) !important;
+      background: rgba(26, 11, 46, 0.95) !important;
+    }
+
+    /* Mobile search bar enhancements */
+    .frosted-card {
+      backdrop-filter: blur(15px) !important;
+      -webkit-backdrop-filter: blur(15px) !important;
+    }
+
+    /* Mobile search input styling */
+    .frosted-card input {
+      background: rgba(26, 11, 46, 0.3) !important;
+      border: 1px solid rgba(255, 244, 224, 0.1) !important;
+      backdrop-filter: blur(8px) !important;
+    }
+
+    .frosted-card input:focus {
+      background: rgba(26, 11, 46, 0.5) !important;
+      border-color: rgba(3, 255, 187, 0.3) !important;
+      backdrop-filter: blur(12px) !important;
+    }
+
+    /* Mobile button styling improvements */
+    .frosted-card button {
+      backdrop-filter: blur(6px) !important;
+      -webkit-backdrop-filter: blur(6px) !important;
+      transition: all 0.2s ease !important;
+    }
+
+    .frosted-card button:hover {
+      backdrop-filter: blur(10px) !important;
+      transform: translateY(-1px) !important;
+    }
+
+    /* Mobile badge styling */
+    .frosted-card .badge {
+      backdrop-filter: blur(4px) !important;
+      -webkit-backdrop-filter: blur(4px) !important;
+    }
+
+    /* Improve mobile search dropdown */
+    .frosted-card .absolute {
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      background: rgba(26, 11, 46, 0.95) !important;
+      border: 1px solid rgba(255, 244, 224, 0.15) !important;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3) !important;
+    }
+
+    /* Mobile navigation active state enhancements */
+    .nav-tab-active {
+      background: rgba(3, 255, 187, 0.1) !important;
+      border-color: rgba(3, 255, 187, 0.3) !important;
+      backdrop-filter: blur(8px) !important;
+    }
+
+    /* Mobile navigation hover effects */
+    .nav-tab-inactive:hover {
+      background: rgba(255, 244, 224, 0.05) !important;
+      border-color: rgba(3, 255, 187, 0.2) !important;
+      backdrop-filter: blur(10px) !important;
+    }
+
+    /* Enhanced mobile scrolling */
+    body {
+      -webkit-overflow-scrolling: touch !important;
+      scroll-behavior: smooth !important;
+    }
+
+    /* Mobile gesture optimizations */
+    * {
+      touch-action: manipulation !important;
+    }
+
+    /* Prevent horizontal scroll on mobile */
+    .nav-glass {
+      overflow-x: hidden !important;
+    }
+
+    /* Mobile-specific text selection */
+    ::selection {
+      background: rgba(3, 255, 187, 0.2) !important;
+      color: #fff4e0 !important;
+    }
+
+    /* Mobile tab indicator animation */
+    @keyframes mobile-tab-glow {
+      0%, 100% {
+        box-shadow: 0 0 5px rgba(3, 255, 187, 0.3);
+      }
+      50% {
+        box-shadow: 0 0 15px rgba(3, 255, 187, 0.5);
+      }
+    }
+
+    .nav-tab-active {
+      animation: mobile-tab-glow 2s ease-in-out infinite !important;
+    }
+
+    /* Mobile search results enhancements */
+    .frosted-card :hover {
+      background: rgba(3, 255, 187, 0.1) !important;
+      backdrop-filter: blur(8px) !important;
+    }
+
+    /* Mobile status badges positioning */
+    .nav-glass .tycho-mono {
+      font-size: 0.75rem !important;
+      padding: 0.25rem 0.5rem !important;
+    }
+  }
+
+  /* Additional responsive breakpoints for better tablet experience */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    /* Tablet-specific adjustments */
+    .table-container {
+      font-size: 0.875rem;
+    }
+
+    [data-radix-hover-card-content],
+    .hover-card-ultra-glass,
+    .hover-card-path-ultra-glass {
+      width: 300px !important;
+      min-width: 300px !important;
+      max-width: 300px !important;
+    }
+
+    /* Tablet navigation optimizations */
+    .nav-glass {
+      backdrop-filter: blur(18px) !important;
+    }
+
+    /* Tablet search bar improvements */
+    .frosted-card {
+      backdrop-filter: blur(14px) !important;
+    }
+  }
+
+  /* Ultra-wide screen optimizations */
+  @media (min-width: 1400px) {
+    .table-container {
+      max-width: none;
+    }
+
+    [data-radix-hover-card-content],
+    .hover-card-ultra-glass,
+    .hover-card-path-ultra-glass {
+      width: 360px !important;
+      min-width: 360px !important;
+      max-width: 360px !important;
+    }
+
+    /* Ultra-wide navigation enhancements */
+    .nav-glass {
+      backdrop-filter: blur(25px) !important;
+    }
+  }
+
+  /* Animations for graph visualizations */
+  @keyframes pathFlow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+}
